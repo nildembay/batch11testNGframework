@@ -66,6 +66,7 @@ public class D11_SoftAssert1 {
 
 
         softAssert.assertAll();
+        System.out.println("bu satır çalışır mı?");
 
     }
 
