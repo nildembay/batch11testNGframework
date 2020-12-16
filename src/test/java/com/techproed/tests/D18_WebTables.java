@@ -4,6 +4,7 @@ import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -78,6 +79,77 @@ public class D18_WebTables extends TestBase {
         System.out.println(dorduncuSatir.getText());
 
     }
+    /*
+    ● printCells() metodu oluşturun //td
+ ○ table body’sinde bulunan toplam hücre(cell) sayısını bulun.
+ ○ Table body’sinde bulunan hücreleri(cells) konsolda yazdırın.
+     */
+    @Test
+    public void printCells(){
+        login();
+        List<WebElement> hucrelerlistesi= driver.findElements(By.xpath("//tbody//td"));
+        System.out.println(hucrelerlistesi.size());
+        for (WebElement w:hucrelerlistesi
+             ) {
+            System.out.println(w.getText());
+        }
 
+
+
+    }
+
+    /*
+    ● printColumns() metodu oluşturun
+ ○ table body’sinde bulunan toplam sutun(column) sayısını bulun.
+ her sutunun üstüne header ı yazsın
+ ○ Table body’sinde bulunan sutunlari(column) konsolda yazdırın.
+ ○ 5.column daki elementleri konsolda yazdırın.
+     */
+
+    @Test
+    public void printColums(){
+        login();
+        List<WebElement> basliklarlistesi= driver.findElements(By.xpath("//thead//th"));
+        int sutunSayisi=basliklarlistesi.size();
+
+        for (int i=1; i<=sutunSayisi; i++){
+
+            List<WebElement> tumSutunlar=driver.findElements(By.xpath("//tbody//tr//td["+i+"]"));
+            System.out.println(driver.findElement(By.xpath("//thead//th["+i+"]")).getText());
+            for (WebElement w:tumSutunlar
+            ) {
+                System.out.println(w.getText());
+            }
+
+        }
+
+        List<WebElement> besincisutun=driver.findElements(By.xpath("//tbody//tr//td[5]"));
+        for (WebElement w:besincisutun
+        ) {
+            System.out.println(w.getText());
+        }
+
+
+    }
+    /*
+    1. Bir metod oluşturun : printData(int row, int column);
+ a. Satır(row) ve sütun(column) numarasını girdiğinizde,
+ printData metodu bu  hücredeki(cell) veriyi yazdırmalıdır.
+     */
+    public String printData(int row,int column){
+
+        WebElement yazi=driver.findElement(By.xpath("//tbody//tr["+row+"]//td["+column+"]"));
+        System.out.println(yazi.getText());
+        return yazi.getText();
+    }
+    //b. Örnek: printData (3,5); => 3. satır, 5. Sütundaki veriyi yazdırmalıdır
+    @Test
+    public void dataKontrolTest(){
+        login();
+        printData(3,5);
+        //c. yazdirilan datanin olmasi gereken dataya esit oldugunu test edin
+        Assert.assertEquals(printData(3,5),"NewYork");
+
+    }
 
 }
