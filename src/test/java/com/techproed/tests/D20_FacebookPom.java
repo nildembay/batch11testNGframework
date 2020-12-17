@@ -1,6 +1,7 @@
 package com.techproed.tests;
 
 import com.techproed.pages.FaceBookPage;
+import com.techproed.utilities.ConfigReader;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -34,6 +35,15 @@ public class D20_FacebookPom extends TestBase {
 
     }
 
+    @Test
+    public void test3() throws InterruptedException {
 
+        driver.get(ConfigReader.getProperty("facebook_url"));
+        FaceBookPage faceBookPage=new FaceBookPage(driver);
+        faceBookPage.userTextBox.sendKeys(ConfigReader.getProperty("fb_user"));
+        faceBookPage.passwordTextBox.sendKeys(ConfigReader.getProperty("fb_pass"));
+        faceBookPage.button.click();
+        Thread.sleep(10000);
+    }
 
 }
