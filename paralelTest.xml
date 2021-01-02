@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="paralel calistirma" >
+    <test name="paralel test" parallel="classes" thread-count="2">
+        <classes>
+            <class name="com.techproed.tests.D25_WindowHandle"></class>
+            <class name="com.techproed.tests.D09_Dropdown"></class>
+            <class name="com.techproed.tests.D13_WindowHandle2"></class>
+        </classes>
+
+    </test>
+
+
+
+</suite>

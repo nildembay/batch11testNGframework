@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Running Positive Smoke Test" >
+    <test name="class test">
+        <classes>
+            <class name="com.techproed.tests.D09_Dropdown"></class>
+            <class name="com.techproed.tests.D10_DropDownAmazon"></class>
+
+        </classes>
+
+    </test>
+
+</suite>
